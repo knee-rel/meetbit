@@ -1,23 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useMemo } from "react";
+import "./App.css";
+
+//asset imports
+// import meetbit_logo from "../assets/meetbit_logo.png";
 
 function App() {
+  const [word, setWord] = useState("");
+
+  // const submitHandler = (event) => {
+  //   event.preventDefault();
+
+  //   return (
+  //     word ===
+  //     word.split("").reverse().join("").toLowerCase().replace("/[^ws]/gi, ''")
+  //   );
+  // };
+
+  let dummyWord = word.replace(/[&\/\\#^+()$~%.'":*?<>{}!@]/g, '')
+
+  const isPalindrome = useMemo(() => {
+    return (
+      word ===
+      word.split("").reverse().join("").toLowerCase().replace()
+    );
+  }, [word]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <div className="card__outline">
+        <div>
+          {/* logo goes here */}
+
+          <h1>Palindrome Challenge</h1>
+        </div>
+        <div>
+          <input
+            type="text"
+            id="palindrome"
+            placeholder="Palindrome"
+            onChange={(event) => setWord(event.target.value)}
+          />
+          <p>
+            {isPalindrome ? "You got a palindrome" : "This isn't a palindrome"}
+          </p>
+        </div>
+        <button>Check this string</button>
+      </div>
     </div>
   );
 }
